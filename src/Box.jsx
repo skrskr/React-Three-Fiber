@@ -1,33 +1,42 @@
 import { useFrame } from "@react-three/fiber";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 export default function Box(props) {
-    const ref = useRef();
-    // ref is undefined since component is not rendered yet
-    // console.log(ref);
-    
-    // useEffect(() => {
-    // ref is mesh object because useEffect is called after component is rendered
-    //   console.log(ref);
-    // }, []);
+  const ref = useRef();
 
-    // useFrame((state, delta) => {
-    useFrame((_, delta) => {
-      ref.current.rotation.x += delta
-      ref.current.rotation.y += delta * .5
-    //   ref.current.position.y = Math.sin(state.clock.getElapsedTime()) /2
-    })
+  const [hover, setHover] = useState(false);
+  const [rotate, setRotate] = useState(false);
+
+  // ref is undefined since component is not rendered yet
+  // console.log(ref);
+
+  // useEffect(() => {
+  // ref is mesh object because useEffect is called after component is rendered
+  //   console.log(ref);
+  // }, []);
+
+  // useFrame((state, delta) => {
+  useFrame((_, delta) => {
+    if (rotate) {
+      ref.current.rotation.x += delta;
+      ref.current.rotation.y += delta * 0.5;
+      //   ref.current.position.y = Math.sin(state.clock.getElapsedTime()) /2
+    }
+  });
 
   return (
-    <mesh {...props} ref={ref}
-        onPointerUp={(e) => console.log("on pointer up" + e.object.name)}
-        onPointerDown={(e) => console.log("on pointer down" + e.object.name)}
-        onPointerHover={(e) => console.log("on pointer hover" + e.object.name)}
-        onPointerOut={(e) => console.log("on pointer out" + e.object.name)}
-        onUpdate={(e) => console.log(e)}
+    <mesh
+      {...props}
+      ref={ref}
+      scale={hover ? [1.1, 1.1, 1.1] : [1, 1, 1]}
+      onPointerUp={() => setRotate(!rotate)}
+      //   onPointerDown={(e) => console.log("on pointer down" + e.object.name)}
+      onPointerOver={() => setHover(true)}
+      onPointerOut={() => setHover(false)}
+      onUpdate={(e) => console.log(e)}
     >
       <boxGeometry />
-      <meshBasicMaterial color={0x00ff00} wireframe />
+      <meshBasicMaterial color={hover ? 0xff0000 : 0x00ff00} wireframe />
     </mesh>
   );
 }
