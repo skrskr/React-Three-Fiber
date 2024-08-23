@@ -1,3 +1,4 @@
+import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef } from "react";
 
 export default function Box(props) {
@@ -9,6 +10,13 @@ export default function Box(props) {
     // ref is mesh object because useEffect is called after component is rendered
       console.log(ref);
     }, []);
+
+    // useFrame((state, delta) => {
+    useFrame((_, delta) => {
+      ref.current.rotation.x += delta
+      ref.current.rotation.y += delta * .5
+    //   ref.current.position.y = Math.sin(state.clock.getElapsedTime()) /2
+    })
 
   return (
     <mesh {...props} ref={ref}>
