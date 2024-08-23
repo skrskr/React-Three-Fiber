@@ -1,8 +1,14 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Box(props) {
+    // ref is undefined since component is not rendered yet
     const ref = useRef();
     console.log(ref);
+    
+    useEffect(() => {
+    // ref is mesh object because useEffect is called after component is rendered
+      console.log(ref);
+    }, []);
 
   return (
     <mesh {...props} ref={ref}>
