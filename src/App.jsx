@@ -20,6 +20,11 @@ export default function App() {
       <OrbitControls />
 
       <axesHelper args={[5]}/>
+      <gridHelper 
+        args={[20, 20, 0xff0000, 'teal']}
+        // rotation-x={Math.PI / 4}
+        // rotation-y={Math.PI / 4}
+      />
       <Stats />
     </Canvas>
   );
