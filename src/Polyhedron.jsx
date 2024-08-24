@@ -24,6 +24,8 @@ export default function Polyhedron({position, polyhedron}) {
       geometry={polyhedron[count]}
     >
       <meshBasicMaterial color={ 0x00ff00} wireframe />
+
+      {/* <axesHelper /> */}
     </mesh>
   );
 }
