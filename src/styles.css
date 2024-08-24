@@ -7,9 +7,9 @@ body,
 }
 
 #leva__root > * {
-  width: 100px;
+  width: 400px;
 }
 
-#leva__root > * {
+/* #leva__root > * {
   scale: 50%;
-}
+} */
