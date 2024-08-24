@@ -39,6 +39,7 @@
         }
     },
     "dependencies": {
-        "@react-three/drei": "^9.111.3"
+        "@react-three/drei": "^9.111.3",
+        "leva": "^0.9.35"
     }
 }

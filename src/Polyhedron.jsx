@@ -1,7 +1,7 @@
 import { useFrame } from "@react-three/fiber";
 import { useEffect, useRef, useState } from "react";
 
-export default function Polyhedron({position, polyhedron}) {
+export default function Polyhedron({polyhedron, color, ...props}) {
   const ref = useRef();
 
   const [count, setCount] = useState(0);
@@ -18,12 +18,12 @@ export default function Polyhedron({position, polyhedron}) {
 
   return (
     <mesh
-      position={position}
+      {...props}
       ref={ref}
-      onPointerDown={() => setCount((count + 1) % 3)}
+      onPointerDown={() => setCount((count + 1) % 2)}
       geometry={polyhedron[count]}
     >
-      <meshBasicMaterial color={ 0x00ff00} wireframe />
+      <meshBasicMaterial color={ color } wireframe />
 
       {/* <axesHelper /> */}
     </mesh>
